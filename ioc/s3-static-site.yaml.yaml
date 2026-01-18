@@ -1,0 +1,19 @@
+Parameters:
+  MyPublicWebsiteBucket:
+    Type: String
+    Default: "my-app-static-assets-placeholder" # Placeholder name
+    Description: "The name of the S3 bucket for the static website"
+
+Resources:
+  PublicBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref MyPublicWebsiteBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: "PublicReadForStaticAssetsOnly"
+            Effect: "Allow"
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "arn:aws:s3:::${MyPublicWebsiteBucket}/public/*"

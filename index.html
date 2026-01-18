@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Incident Handling</title>
+    <link rel="icon" type="image/x-icon" href="favicon-32x32.png" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <button class="mobile-menu-toggle" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="container">
+        <div class="header-content">
+          <div class="header-text">
+            <h1>Incident Handling 101</h1>
+            <p class="subtitle">
+              Your Tactical Playbook for Cybersecurity Incident Response
+            </p>
+          </div>
+          <button
+            id="darkModeToggle"
+            class="toggle-btn"
+            aria-label="Toggle dark mode"
+            aria-pressed="false"
+          >
+            <svg
+              class="light-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"
+              />
+            </svg>
+            <svg
+              class="dark-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav aria-label="Main navigation">
+      <div class="container">
+        <ul role="menu">
+          <li role="none">
+            <a role="menuitem" href="#kill-chain">Cyber Kill Chain</a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#process">Incident Handling Process</a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#preparation">Preparation Stage</a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#detection">Detection & Analysis</a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#containment">Containment & Recovery</a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#post-incident">Post-Incident Activity</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main id="main" class="container" role="main">
+      <article id="intro">
+        <h2>Introduction to Incident Handling</h2>
+        <p>
+          Incident handling (IH) has become an important part of an
+          organization's defensive capability against cybercrime. While
+          preventive measures reduce risk, a robust incident handling capability
+          is undeniably essential for any organization that cannot afford a
+          compromise in data confidentiality, integrity, or availability.
+        </p>
+
+        <div class="definition">
+          <h3>Key Definitions</h3>
+          <p>
+            <strong>Event:</strong> An action occurring in a system or network
+            (e.g., user sending email, firewall allowing connection).
+          </p>
+          <p>
+            <strong>Incident:</strong> An event with negative consequences
+            (e.g., system crash, unauthorized data access). Examples include
+            data theft, financial theft, unauthorized access to data, and
+            installation of malware.
+          </p>
+          <p>
+            <strong>Incident Handling:</strong> A clearly defined set of
+            procedures to manage and respond to security incidents in a computer
+            or network environments.
+          </p>
+        </div>
+
+        <p>
+          Incident handling isn't limited to intrusion incidents alone. Other
+          types of incidents, such as those caused by malicious insiders,
+          availability issues, and loss of intellectual property, also fall
+          within its scope.
+        </p>
+
+        <div class="key-point">
+          <h3>Incident Handling's Value</h3>
+          <p>
+            The objective of incident handling teams is to minimize the theft of
+            information or the disruption of services by performing
+            investigations and remediation steps systematically. The decisions
+            taken before, during, and after an incident will affect its impact.
+          </p>
+          <p>
+            One of the most widely used resources is NIST's Computer Security
+            Incident Handling Guide, which provides practical guidelines on
+            responding to incidents effectively.
+          </p>
+        </div>
+      </article>
+
+      <article id="kill-chain">
+        <h2>The Cyber Kill Chain</h2>
+        <p>
+          Understanding the attack lifecycle (cyber kill chain) provides
+          valuable insights about how far in the network an attacker is and what
+          they may have access to during investigation.
+        </p>
+
+        <div class="kill-chain-steps">
+          <div class="step">
+            <h3>1. Reconnaissance</h3>
+            <p>
+              Attackers gather information through passive methods (LinkedIn,
+              company websites) or active scanning of external applications and
+              IP addresses.
+            </p>
+          </div>
+          <div class="step">
+            <h3>2. Weaponization</h3>
+            <p>
+              Malware is developed and embedded into an exploit or deliverable
+              payload, often tailored to bypass specific defenses based on recon
+              information.
+            </p>
+          </div>
+          <div class="step">
+            <h3>3. Delivery</h3>
+            <p>
+              The payload is delivered via phishing emails (attachments or
+              links), malicious websites, or physical media like USB drives.
+              Often only requires a double-click from the victim.
+            </p>
+          </div>
+          <div class="step">
+            <h3>4. Exploitation</h3>
+            <p>
+              The payload is triggered to execute code on the target system,
+              attempting to gain access or control.
+            </p>
+          </div>
+          <div class="step">
+            <h3>5. Installation</h3>
+            <p>
+              Malware often achieves persistence using droppers, backdoors, or
+              rootkits. Common techniques include using lightweight initial
+              stagers that load additional tools on demand.
+            </p>
+          </div>
+          <div class="step">
+            <h3>6. Command & Control</h3>
+            <p>
+              Attacker establishes remote access to the compromised system,
+              often using modular approaches to maintain multiple access points.
+            </p>
+          </div>
+          <div class="step">
+            <h3>7. Actions on Objectives</h3>
+            <p>
+              Attacker achieves their final goal - data exfiltration, ransomware
+              deployment, or other malicious objectives.
+            </p>
+          </div>
+        </div>
+        <figure class="kill-chain-visual">
+          <img
+            src="kill_chain.png"
+            alt="Cyber Kill Chain diagram showing the 7 stages with brief descriptions"
+            width="800"
+            height="450"
+          />
+          <figcaption>Figure 1: The Cyber Kill Chain framework</figcaption>
+        </figure>
+        <div class="key-point">
+          <p>
+            Our primary objective is to
+            <strong
+              >stop an attacker from progressing further up the kill
+              chain</strong
+            >, ideally in one of the earliest stages (reconnaissance,
+            weaponization, or delivery).
+          </p>
+          <p>
+            Adversaries often repeat stages (like returning to reconnaissance
+            after initial installation) to move deeper into networks.
+          </p>
+        </div>
+      </article>
+
+      <article id="process">
+        <h2>Incident Handling Process</h2>
+        <p>
+          The NIST Computer Security Incident Handling Guide outlines four key
+          stages:
+        </p>
+
+        <div class="process-steps">
+          <div class="step">
+            <h3>1. Preparation</h3>
+            <p>
+              Establish incident handling capability and implement protective
+              measures:
+            </p>
+            <ul>
+              <li>Skilled team members and trained workforce</li>
+              <li>Clear policies and documentation</li>
+              <li>Necessary tools (software and hardware)</li>
+              <li>
+                Protective measures (DMARC, endpoint hardening, network
+                segmentation)
+              </li>
+            </ul>
+          </div>
+          <div class="step">
+            <h3>2. Detection & Analysis</h3>
+            <p>Identify and investigate potential incidents:</p>
+            <ul>
+              <li>Initial investigation and timeline creation</li>
+              <li>Indicator of Compromise (IOC) creation and usage</li>
+              <li>Data collection and analysis</li>
+              <li>Severity assessment and communication</li>
+            </ul>
+          </div>
+          <div class="step">
+            <h3>3. Containment, Eradication & Recovery</h3>
+            <p>Limit damage and restore normal operations:</p>
+            <ul>
+              <li>Short-term containment (isolation, traffic redirection)</li>
+              <li>Long-term containment (password changes, patches)</li>
+              <li>Eradication (malware removal, system rebuilding)</li>
+              <li>Recovery (system validation, enhanced monitoring)</li>
+            </ul>
+          </div>
+          <div class="step">
+            <h3>4. Post-Incident Activity</h3>
+            <p>Learn from the incident and improve:</p>
+            <ul>
+              <li>Incident documentation and reporting</li>
+              <li>Lessons learned and process improvements</li>
+              <li>Team training and tool evaluation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="key-point">
+          <p>
+            Incident handlers spend most time in preparation and detection &
+            analysis stages. The process is cyclic - as new evidence is
+            discovered, next steps may change.
+          </p>
+          <p>
+            The two main activities are <strong>investigation</strong> (discover
+            patient zero, determine tools used, document compromised systems)
+            and <strong>recovery</strong> (create and implement recovery plan).
+          </p>
+        </div>
+      </article>
+
+      <article id="preparation">
+        <h2>Preparation Stage</h2>
+        <p>
+          The foundation of effective incident handling begins long before any
+          incident occurs. Proper preparation involves two key objectives:
+        </p>
+
+        <h3>1. Establishing Incident Handling Capability</h3>
+        <p>Preparation prerequisites include:</p>
+        <ul>
+          <li>
+            <strong>Skilled team members:</strong> Either in-house or
+            outsourced, but basic capability must exist internally
+          </li>
+          <li>
+            <strong>Trained workforce:</strong> Security awareness for all
+            employees
+          </li>
+          <li>
+            <strong>Clear policies and documentation:</strong> Including:
+            <ul>
+              <li>
+                Contact information for all relevant parties (legal, management,
+                IT, law enforcement)
+              </li>
+              <li>Incident response policy, plan, and procedures</li>
+              <li>System and network baselines</li>
+              <li>Network diagrams and asset management database</li>
+              <li>Emergency privileged accounts</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Tools and equipment:</strong> Including:
+            <ul>
+              <li>Forensic workstations</li>
+              <li>Digital forensic tools</li>
+              <li>Memory analysis tools</li>
+              <li>Log analysis tools</li>
+              <li>Network capture tools</li>
+              <li>Physical tools (write blockers, hard drives, cables)</li>
+              <li>Jump bag with essential tools ready to go</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>2. Protective Measures</h3>
+        <p>Key security controls to prevent incidents:</p>
+        <ul>
+          <li>
+            <strong>DMARC:</strong> Email protection against phishing (built on
+            SPF and DKIM)
+          </li>
+          <li>
+            <strong>Endpoint Hardening:</strong>
+            <ul>
+              <li>Disable LLMNR/NetBIOS</li>
+              <li>Implement LAPS and remove admin privileges</li>
+              <li>Configure PowerShell in "ConstrainedLanguage" mode</li>
+              <li>Enable Attack Surface Reduction rules</li>
+              <li>
+                Implement execution whitelisting (especially blocking
+                user-writable folders)
+              </li>
+              <li>Utilize host-based firewalls</li>
+              <li>Deploy EDR products with AMSI integration</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Network Protection:</strong>
+            <ul>
+              <li>Proper network segmentation</li>
+              <li>IDS/IPS systems with SSL/TLS interception</li>
+              <li>802.1x or Conditional Access for device control</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Identity Management:</strong>
+            <ul>
+              <li>Privileged Identity Management</li>
+              <li>Multi-factor authentication (especially for admin access)</li>
+              <li>Strong passphrases instead of complex passwords</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Other Measures:</strong>
+            <ul>
+              <li>Continuous vulnerability scanning</li>
+              <li>User awareness training</li>
+              <li>Active Directory security assessments</li>
+              <li>Purple team exercises</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="key-point">
+          <p>
+            Remember: "Don't let perfect be the enemy of good" when implementing
+            security controls. Even partial implementations provide significant
+            protection.
+          </p>
+        </div>
+      </article>
+
+      <article id="detection">
+        <h2>Detection & Analysis Stage</h2>
+        <p>
+          This phase involves detecting incidents through sensors, logs, and
+          personnel reports, followed by thorough analysis of the findings.
+        </p>
+
+        <h3>Detection Sources</h3>
+        <p>Incidents can be detected from:</p>
+        <ul>
+          <li>Employees noticing abnormal behavior</li>
+          <li>Alerts from security tools (EDR, IDS, Firewall, SIEM)</li>
+          <li>Threat hunting activities</li>
+          <li>Third-party notifications</li>
+        </ul>
+
+        <p>Recommended detection levels:</p>
+        <ul>
+          <li><strong>Network perimeter:</strong> Firewalls, NIDS/NIPS, DMZ</li>
+          <li><strong>Internal network:</strong> Host firewalls, HIDS/HIPS</li>
+          <li><strong>Endpoint level:</strong> Antivirus, EDR systems</li>
+          <li>
+            <strong>Application level:</strong> Application and service logs
+          </li>
+        </ul>
+
+        <h3>Initial Investigation</h3>
+        <p>When an incident is detected, collect:</p>
+        <ul>
+          <li>Date/Time and who reported it</li>
+          <li>How it was detected</li>
+          <li>Type of incident (phishing, system unavailability, etc.)</li>
+          <li>List of impacted systems</li>
+          <li>Actions already taken</li>
+          <li>System details (location, OS, IPs, purpose, current state)</li>
+          <li>
+            Malware details (if applicable) - IPs, timestamps, type, file hashes
+          </li>
+        </ul>
+
+        <h3>Building the Incident Timeline</h3>
+        <p>
+          The timeline helps organize events chronologically and should include:
+        </p>
+        <div class="table-wrapper">
+          <table aria-describedby="timeline-desc">
+            <caption id="timeline-desc" class="visually-hidden">
+              Incident timeline showing detection events
+            </caption>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Hostname</th>
+              <th scope="col">Event Description</th>
+              <th scope="col">Data Source</th>
+            </tr>
+            <tr>
+              <td>09/09/2021</td>
+              <td>13:31 CET</td>
+              <td>SQLServer01</td>
+              <td>Hacker tool 'Mimikatz' detected</td>
+              <td>Antivirus Software</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Investigation Process</h3>
+        <p>The investigation follows a 3-step cyclic process:</p>
+        <ol>
+          <li>
+            <strong>Creation and usage of IOCs:</strong> Artifacts like IP
+            addresses, file hashes, filenames documented in standards like
+            OpenIOC or YARA
+          </li>
+          <li>
+            <strong>Identification of new leads:</strong> Finding other impacted
+            systems while eliminating false positives
+          </li>
+          <li>
+            <strong>Data collection and analysis:</strong> Performing live
+            response or forensic analysis on systems
+          </li>
+        </ol>
+
+        <div class="code-sample-container" aria-live="polite">
+          <h3>Practical Example: Creating YARA Rules</h3>
+          <p>
+            YARA rules are essential for pattern matching during malware
+            analysis. Use this when:
+          </p>
+          <ul>
+            <li>
+              You need to scan files or memory for known malicious patterns
+            </li>
+            <li>Creating reusable detection logic for your SIEM/EDR</li>
+            <li>Documenting IOCs from threat intelligence reports</li>
+          </ul>
+
+          <div
+            class="code-sample"
+            data-lang="YARA"
+            tabindex="0"
+            role="region"
+            aria-describedby="yara-desc"
+          >
+            <div id="yara-desc" class="visually-hidden">
+              YARA rule example with 3 detection patterns
+            </div>
+            <pre><span class="code-keyword">rule</span> RAT_Detection {
+                <span class="code-keyword">meta</span>:
+                    description = <span class="code-string">"Detects common Remote Access Trojans"</span>
+                    author = <span class="code-string">"Blue Team"</span>
+                
+                <span class="code-keyword">strings</span>:
+                    $s1 = <span class="code-string">"CobaltStrike"</span> <span class="code-keyword">wide</span>
+                    $s2 = <span class="code-string">"Mimikatz"</span> <span class="code-keyword">ascii</span>
+                    $s3 = { 6A 40 68 00 30 00 00 6A 14 8D 91 }
+                
+                <span class="code-keyword">condition</span>:
+                    any of them
+            }</pre>
+          </div>
+
+          <div class="code-tips">
+            <h4>Pro Tip:</h4>
+            <p>
+              Test new YARA rules against benign files first to avoid false
+              positives. The <code>-w</code> flag in YARA CLI suppresses
+              warnings.
+            </p>
+          </div>
+        </div>
+
+        <div class="key-point">
+          <p>
+            Important: Use connection protocols that don't cache credentials
+            when investigating potentially compromised systems (e.g., WinRM).
+            Tools like PsExec can cache credentials if not used carefully.
+          </p>
+          <p>
+            During data collection, minimize system interaction to preserve
+            evidence. Memory forensics is becoming increasingly important for
+            advanced attacks.
+          </p>
+        </div>
+      </article>
+
+      <article id="containment">
+        <h2>Containment, Eradication & Recovery</h2>
+
+        <h3>Containment</h3>
+        <p>Actions to prevent incident spread, divided into:</p>
+        <ul>
+          <li>
+            <strong>Short-term containment:</strong> Minimal footprint actions:
+            <ul>
+              <li>Isolating systems in separate VLANs</li>
+              <li>Pulling network cables</li>
+              <li>Redirecting attacker C2 DNS</li>
+              <li>Preserving evidence (forensic images)</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Long-term containment:</strong> Persistent changes:
+            <ul>
+              <li>Password changes</li>
+              <li>Firewall rules</li>
+              <li>System patches</li>
+              <li>HIDS implementation</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="code-sample-container" aria-live="polite">
+          <h3>Practical Example: PowerShell IOC Scanner</h3>
+          <p>
+            This script helps during containment by identifying compromised
+            systems. Best used when:
+          </p>
+          <ul>
+            <li>You need to scan multiple systems quickly</li>
+            <li>Working with a list of known-bad hashes from threat intel</li>
+            <li>Creating an initial assessment of breach scope</li>
+          </ul>
+
+          <div
+            class="code-sample"
+            data-lang="PowerShell"
+            tabindex="0"
+            role="region"
+            aria-describedby="ps-desc"
+          >
+            <div id="ps-desc" class="visually-hidden">
+              PowerShell script to check for Indicators of Compromise
+            </div>
+            <pre><span class="code-comment"># PowerShell script to check for IOCs across multiple systems</span>
+  <span class="code-keyword">function</span> <span class="code-function">Check-IOCs</span> {
+      <span class="code-keyword">param</span>(
+          [string[]]$Computers,
+          [string[]]$Hashes,
+          [string[]]$IPs
+      )
+      
+      <span class="code-keyword">foreach</span> ($computer <span class="code-keyword">in</span> $Computers) {
+          <span class="code-keyword">try</span> {
+              <span class="code-comment"># Check running processes</span>
+              $processes = <span class="code-function">Get-WmiObject</span> -Class Win32_Process -ComputerName $computer |
+                          <span class="code-function">Select-Object</span> Name, ProcessId, ExecutablePath
+              
+              <span class="code-comment"># Compare against known bad hashes</span>
+              $badProcesses = $processes | <span class="code-function">Where-Object</span> {
+                  $_.ExecutablePath -and (<span class="code-function">Test-Path</span> $_.ExecutablePath) -and
+                  ($Hashes -contains (<span class="code-function">Get-FileHash</span> $_.ExecutablePath).Hash)
+              }
+              
+              <span class="code-comment"># Output results</span>
+              <span class="code-keyword">if</span> ($badProcesses) {
+                  [PSCustomObject]@{
+                      ComputerName = $computer
+                      IOCType = <span class="code-string">"Malicious Process"</span>
+                      Details = $badProcesses
+                  }
+              }
+          } <span class="code-keyword">catch</span> {
+              <span class="code-function">Write-Warning</span> <span class="code-string">"Failed to check </span>$computer<span class="code-string">: $_"</span>
+          }
+      }
+  }</pre>
+          </div>
+
+          <div class="code-tips">
+            <h4>Execution Note:</h4>
+            <p>
+              Run this with constrained language mode (<code
+                >-ExecutionPolicy Bypass -ConstrainedLanguage</code
+              >) to prevent script block logging from alerting attackers.
+            </p>
+          </div>
+        </div>
+
+        <h3>Eradication</h3>
+        <p>Eliminating root causes and attacker presence:</p>
+        <ul>
+          <li>Malware removal</li>
+          <li>System rebuilding</li>
+          <li>Backup restoration</li>
+          <li>Additional patching</li>
+          <li>Network-wide hardening</li>
+        </ul>
+
+        <h3>Recovery</h3>
+        <p>Restoring normal operations with enhanced monitoring:</p>
+        <ul>
+          <li>Business verification of system functionality</li>
+          <li>
+            Heavy logging and monitoring for:
+            <ul>
+              <li>Unusual logons</li>
+              <li>Unusual processes</li>
+              <li>Malware-like registry changes</li>
+            </ul>
+          </li>
+          <li>Phased approach for large incidents</li>
+        </ul>
+
+        <div class="key-point">
+          <p>
+            Important: Containment actions must be coordinated across all
+            systems simultaneously to avoid alerting attackers. Patching alone
+            doesn't mean the incident is over - eradication and recovery must
+            follow.
+          </p>
+        </div>
+      </article>
+
+      <article
+        id="colonial-case"
+        class="deep-dive-case"
+        aria-labelledby="colonial-heading"
+      >
+        <h2 id="colonial-heading">
+          Deep Dive: Colonial Pipeline Attack Response
+        </h2>
+
+        <div class="case-meta">
+          <span class="case-tag critical">Critical Infrastructure</span>
+          <span class="case-tag ransomware">Ransomware</span>
+          <span class="case-date">May 2021</span>
+        </div>
+
+        <div class="case-overview">
+          <h3>Incident Snapshot</h3>
+          <div class="stats-grid">
+            <div class="stat">
+              <div class="stat-value" data-target="7">0+</div>
+              <div class="stat-label">Pipeline shutdown (days)</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value" data-target="4.4">$0</div>
+              <div class="stat-label">Ransom paid (million)</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value" data-target="17">0</div>
+              <div class="stat-label">States affected</div>
+            </div>
+          </div>
+          <p class="case-note">
+            Approximately 90% of the ransom was recovered through blockchain
+            analysis.
+          </p>
+        </div>
+
+        <div class="phase-timeline">
+          <div class="phase containment">
+            <h4>Containment (First 48 Hours)</h4>
+            <ul>
+              <li>Shut down 5,500-mile pipeline within 4 hours</li>
+              <li>
+                Disabled all VPN access (including unused legacy accounts)
+              </li>
+              <li>Fully segmented IT and OT networks</li>
+            </ul>
+          </div>
+
+          <div class="phase recovery">
+            <h4>Recovery (Days 3-14)</h4>
+            <ul>
+              <li>
+                <strong>Physical Verification:</strong> Manual safety checks at
+                73 pumping stations
+              </li>
+              <li>
+                <strong>Staged Restart:</strong> 20% → 50% → 100% capacity over
+                4 days
+              </li>
+              <li>
+                <strong>Systems:</strong> Billing rebuilt from clean backups
+                with enhanced monitoring
+              </li>
+              <li>
+                <strong>Credentials:</strong> 4,000+ accounts rotated + MFA
+                enforced
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="comms-flow">
+          <h3>Communication Framework</h3>
+          <div class="comms-tier">
+            <h5>Internal (First 24 Hours)</h5>
+            <ul>
+              <li>CEO all-hands meeting within 2 hours of detection</li>
+              <li>Dedicated Slack channel for cross-team coordination</li>
+              <li>Twice-daily employee briefings with Q&A</li>
+            </ul>
+          </div>
+
+          <div class="comms-tier">
+            <h5>External (Ongoing)</h5>
+            <ul>
+              <li>Joint press conferences with DHS/FBI</li>
+              <li>Public fuel availability dashboard updated hourly</li>
+              <li>Third-party negotiators for ransom discussions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="lessons-container">
+          <h3>Key Takeaways for Blue Teams</h3>
+          <div class="lesson-card">
+            <div class="lesson-icon" aria-hidden="true">!</div>
+            <div>
+              <h4>Legacy Access = Critical Risk</h4>
+              <p>
+                The compromised VPN account was inactive for 3 years but
+                remained enabled.
+              </p>
+              <p class="lesson-action">
+                <strong>Action:</strong> Implement quarterly access reviews +
+                automated deprovisioning
+              </p>
+            </div>
+          </div>
+
+          <div class="lesson-card">
+            <div class="lesson-icon" aria-hidden="true">!</div>
+            <div>
+              <h4>Recovery ≠ Restoration</h4>
+              <p>
+                Full operational recovery took 2 weeks after systems were
+                technically restored.
+              </p>
+              <p class="lesson-action">
+                <strong>Action:</strong> Define physical process RTOs separate
+                from IT systems
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="post-incident">
+        <h2>Post-Incident Activity Stage</h2>
+        <p>
+          This stage focuses on documenting incidents and improving future
+          response capabilities through lessons learned. It gives us the
+          opportunity to reflect on the threats by examining what occurred, what
+          we did, and how our actions and responses performed.
+        </p>
+
+        <div class="code-sample-container" aria-live="polite">
+          <h3>Practical Example: Memory Forensics</h3>
+          <p>Memory analysis helps with root cause analysis. Critical for:</p>
+          <ul>
+            <li>Identifying attacker techniques after system reboot</li>
+            <li>Finding evidence of fileless malware</li>
+            <li>Validating eradication completeness</li>
+          </ul>
+
+          <div
+            class="code-sample"
+            data-lang="Python"
+            tabindex="0"
+            role="region"
+            aria-describedby="py-desc"
+          >
+            <div id="py-desc" class="visually-hidden">
+              Python script for memory analysis using Volatility
+            </div>
+            <pre><span class="code-keyword">import</span> volatility.conf <span class="code-keyword">as</span> conf
+  <span class="code-keyword">import</span> volatility.registry <span class="code-keyword">as</span> registry
+  <span class="code-keyword">import</span> volatility.plugins.taskmods <span class="code-keyword">as</span> taskmods
+  <span class="code-keyword">import</span> volatility.plugins.malware.malfind <span class="code-keyword">as</span> malfind
+  
+  <span class="code-keyword">def</span> <span class="code-function">analyze_memory</span>(memory_dump):
+      <span class="code-comment"># Basic memory analysis with Volatility</span>
+      registry.PluginImporter()
+      config = conf.ConfObject()
+      
+      config.PROFILE = <span class="code-string">"Win10x64"</span>
+      config.LOCATION = <span class="code-string">"file://"</span> + memory_dump
+      
+      <span class="code-comment"># Example analysis</span>
+      <span class="code-keyword">print</span>(<span class="code-string">"[*] Running pslist..."</span>)
+      <span class="code-keyword">for</span> proc <span class="code-keyword">in</span> taskmods.PSList(config).calculate():
+          <span class="code-keyword">print</span>(<span class="code-string">f"Process: {proc.ImageFileName} (PID: {proc.UniqueProcessId})"</span>)
+      
+      <span class="code-comment"># Check for hidden processes</span>
+      <span class="code-keyword">print</span>(<span class="code-string">"\n[*] Checking for hidden processes..."</span>)
+      <span class="code-keyword">for</span> proc <span class="code-keyword">in</span> malfind.Malfind(config).calculate():
+          <span class="code-keyword">if</span> proc:
+              <span class="code-keyword">print</span>(<span class="code-string">f"[!] Potential malware found in process: {proc[0].ImageFileName}"</span>)</pre>
+          </div>
+
+          <div class="code-tips">
+            <h4>Forensic Tip:</h4>
+            <p>
+              Always capture memory <em>before</em> disconnecting systems. Use
+              <code>winpmem</code> or <code>Belkasoft RAM Capturer</code> for
+              reliable acquisition.
+            </p>
+          </div>
+        </div>
+
+        <h3>Reporting</h3>
+        <p>
+          The final report is a crucial part of the entire process. A complete
+          report will contain answers to questions such as:
+        </p>
+        <ul>
+          <li>What happened and when?</li>
+          <li>Performance of the team dealing with the incident</li>
+          <li>Did the business provide the necessary information promptly?</li>
+          <li>What containment and eradication actions were implemented?</li>
+          <li>What preventive measures should be put in place?</li>
+          <li>What tools and resources are needed for future incidents?</li>
+        </ul>
+
+        <div class="key-point">
+          <p>
+            Incident reports provide measurable results and serve as references
+            for handling future events. In situations where legal action is to
+            be taken, an incident report will also be used in court.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="social-links">
+          <a
+            href="https://www.linkedin.com/in/zainab-rehman-b469ba293"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              />
+            </svg>
+          </a>
+          <a
+            href="mailto:zainabreh65@gmail.com
+          "
+            aria-label="Send Email"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <p>Created by Zainab Rehman | Computer Engineering Student</p>
+        <p>
+          Content based on NIST Incident Handling Guide | Last updated:
+          <span id="update-date"></span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
